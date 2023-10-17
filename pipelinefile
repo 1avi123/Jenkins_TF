@@ -1,21 +1,21 @@
 pipeline {
 agent any
 tools {
-  terraform 'terraform'
+  Terraform 'Terraform'
 }
 options { ansiColor('xterm') } 
  stages { 
    stage ('Checkout Repo') { 
      steps { 
        cleanWs()
-       sh  'git clone https://github.com/UnixArena/terraform-test.git'
+       sh  'git clone https://github.com/1avi123/Jenkins_TF.git'
       }
       } 
 
 stage ('Terraform version') { 
   steps {
    sh '''
-    terraform --version
+    Terraform --version
    ''' 
     }
     }
@@ -23,8 +23,8 @@ stage ('Terraform version') {
   stage ('Terraform init') { 
   steps {
    sh '''
-   cd terraform-test/
-   terraform init
+   cd Terraform-test/
+   Terraform init
    ''' 
    }
    }
@@ -32,9 +32,9 @@ stage ('Terraform version') {
   stage ('Terraform plan') { 
   steps {
    sh '''
-   cd terraform-test/
-   terraform plan -out=tfplan.out
-   terraform show -json tfplan.out
+   cd Terraform-test/
+   Terraform plan -out=tfplan.out
+   Terraform show -json tfplan.out
    ''' 
    }
    }
@@ -42,8 +42,8 @@ stage ('Terraform version') {
  stage ('Terraform apply') { 
   steps {
    sh '''
-   cd terraform-test/
-   terraform apply --auto-approve
+   cd Terraform-test/
+   Terraform apply --auto-approve
    ''' 
    }
         post { 
